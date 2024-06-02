@@ -1,19 +1,25 @@
-function pascalTriangle(n) {
-    if (n <= 0) return [];
+def pascal_triangle(n):
+    if n <= 0:
+        return []
 
-    const triangle = [[1]];
+    triangle = [[1]]  # The first row is always [1]
 
-    for (let i = 1; i < n; i++) {
-        const prevRow = triangle[triangle.length - 1];
-        const newRow = [1];
+    for i in range(1, n):
+        row = [1]  # Start each row with 1
+        for j in range(1, i):
+            row.append(triangle[i-1][j-1] + triangle[i-1][j])
+        row.append(1)  # End each row with 1
+        triangle.append(row)
 
-        for (let j = 1; j < i; j++) {
-            newRow.push(prevRow[j - 1] + prevRow[j]);
-        }
+    return triangle
 
-        newRow.push(1);
-        triangle.push(newRow);
-    }
+# You can use the following main function to test the implementation
+if __name__ == "__main__":
+    def print_triangle(triangle):
+        """
+        Print the triangle
+        """
+        for row in triangle:
+            print("[{}]".format(",".join([str(x) for x in row])))
 
-    return triangle;
-}
+    print_triangle(pascal_triangle(5))
