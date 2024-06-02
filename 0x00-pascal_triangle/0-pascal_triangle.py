@@ -24,4 +24,21 @@ def pascal_triangle(n):
 
         pascal_triangle[i] = new_row
 
-    return pascal_trian
+    return pascal_triangle
+
+
+if __name__ == "__main__":
+    def print_triangle(triangle):
+        """
+        Print the triangle
+        """
+        for row in triangle:
+            print("[{}]".format(",".join([str(x) for x in row])))
+
+    import sys
+    if len(sys.argv) == 2:
+        n = int(sys.argv[1])
+        print_triangle(pascal_triangle(n))
+    else:
+        print("Usage: ./pascal_triangle.py <number of rows>")
+
